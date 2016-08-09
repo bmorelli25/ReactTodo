@@ -1,21 +1,23 @@
 var React = require('react');
 
 var AddTodo = React.createClass({
-  onAddTodo: function (e) {
+  handleSubmit: function (e) {
     e.preventDefault();
-    var newTodo = this.refs.newTodo.value;
+    var todoText = this.refs.todoText.value;
 
-    if(newTodo.length > 0){
-      this.refs.newTodo.value = "";
-      this.props.newTodo(newTodo);
+    if(todoText.length > 0){
+      this.refs.todoText.value = '';
+      this.props.onAddTodo(todoText); //sends todoText to onAddTodo in TodoApp.jsx
+    } else {
+      this.refs.todoText.focus(); //puts cursor back in this input box
     }
   },
   render: function () {
     return (
       <div>
-        <form ref="form" onSubmit={this.onAddTodo} className="add-todo">
-          <input type="text" placeholder="What do you need to do?" ref="newTodo"/>
-        <button className="button primary">Add Todo</button>
+        <form ref="form" onSubmit={this.handleSubmit} className="add-todo">
+          <input type="text" placeholder="What do you need to do?" ref="todoText"/>
+          <button className="button expanded">Add Todo</button>
         </form>
       </div>
     );
