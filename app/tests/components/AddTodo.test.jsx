@@ -13,10 +13,10 @@ describe('AddTodo', () => {
 
   it('should call handleAddTodo if todo is entered', () => {
     var spy = expect.createSpy();
-    var addtodo = TestUtils.renderIntoDocument(<AddTodo newTodo={spy}/>);
+    var addtodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addtodo));
 
-    addtodo.refs.newTodo.value = 'mow the lawn';
+    addtodo.refs.todoText.value = 'mow the lawn';
     TestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toHaveBeenCalledWith('mow the lawn');
@@ -24,10 +24,10 @@ describe('AddTodo', () => {
 
   it('should NOT call handleAddTodo if todo is empty', () => {
     var spy = expect.createSpy();
-    var addtodo = TestUtils.renderIntoDocument(<AddTodo newTodo={spy}/>);
+    var addtodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addtodo));
 
-    addtodo.refs.newTodo.value = '';
+    addtodo.refs.todoText.value = '';
     TestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toNotHaveBeenCalled();
