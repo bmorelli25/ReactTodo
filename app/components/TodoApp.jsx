@@ -1,4 +1,5 @@
 var React = require('react');
+var uuid = require('node-uuid');
 
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
@@ -11,16 +12,16 @@ var TodoApp = React.createClass({
       searchText: '',
       todos: [
         {
-          id: 1,
+          id: uuid(),
           text: 'Walk the dog'
         }, {
-          id: 2,
+          id: uuid(),
           text: 'Mow the lawn'
         }, {
-          id: 3,
+          id: uuid(),
           text: 'Go outside'
         }, {
-          id: 4,
+          id: uuid(),
           text: 'Go inside'
         }
       ]
@@ -28,7 +29,15 @@ var TodoApp = React.createClass({
   },
   //listen for new Todo items being created
   handleAddTodo: function (text){
-    alert('new todo: ' + text)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuid(),
+          text: text
+        }
+      ]
+    });
   },
   handleSearch: function (showCompleted, searchText) {
     //we get the search text and the checkbox status from TodoSearch.jsx
