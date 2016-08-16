@@ -26,7 +26,16 @@ module.exports = {
     });
 
     // Filter by searchText
-
+    filteredTodos = filteredTodos.filter((todo) => {
+      var text = todo.text.toLowerCase();
+      if (searchText === '') {
+        return true;
+      } else if (text.indexOf(searchText) >= 0){
+        return true;
+      } else {
+        return false;
+      }
+    });
 
     // Sort todos with non-completed first
     filteredTodos.sort((a, b) => {
