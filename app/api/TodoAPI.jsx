@@ -27,6 +27,7 @@ module.exports = {
 
     // Filter by searchText
 
+
     // Sort todos with non-completed first
     filteredTodos.sort((a, b) => {
       if (!a.completed && b.completed){
