@@ -1,0 +1,30 @@
+.todo {
+  align-items: center; //vertical align since we're using display: flex
+  display: flex; //allows to align everything
+  cursor: pointer; //since it's clickable
+  padding: 1rem;
+  transition: background .3s ease; //transition a property between its states
+
+  p, input {
+    margin: 0;
+  }
+
+  > :first-child { //selects input container
+    margin-right: 1rem; //space to right of checkbox before text
+  }
+
+  &:hover { //same thing as .todo:hover (scss way)
+    background: #f0f0f0;
+  }
+}
+
+.todo__subtext {
+  color: #999;
+}
+
+.todo-completed {
+  p, .todo-subtext {
+    color: $light-color;
+    text-decoration: line-through;
+  }
+}
