@@ -1,6 +1,6 @@
 ###React Todo Application
 
-###**[Live Demo (coming soon on gh-pages)](#)**
+###**Live Demo: [gh-pages](https://bmorelli25.github.io/ReactTodo/), [heroku](https://sleepy-beach-81299.herokuapp.com/)**
 
 -------------
 
