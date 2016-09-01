@@ -27,17 +27,15 @@ firebaseRef.set({
   console.log('Set Failed');
 });
 
-// Running this removes the data set above
-// firebaseRef.set({
-//   appName: 'Todo Application'
-// });
-
-firebaseRef.child('app').set({
-  name: 'React-Todo-App'
+firebaseRef.update({
+  isRunning: false,
+  'app/name': 'React Todo App' // example of multipath update
 });
 
-// what the database looks like
-// {
-//   appName: 'Todo App',
-//   isRunning: true
-// }
+firebaseRef.child('app').update({
+  version: '1.0.1'
+}).then( () => {
+  console.log('Update Worked');
+}, (e) => {
+  console.log('Update Failed');
+});
