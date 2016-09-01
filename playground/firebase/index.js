@@ -8,8 +8,32 @@ var config = {
 };
 firebase.initializeApp(config);
 
-firebase.database().ref().set({
-  appName: 'Todo App'
+var firebaseRef = firebase.database().ref();
+
+//set completely wipes everything at current reference
+firebaseRef.set({
+  app: {
+    name: 'Todo App',
+    version: '1.0.0'
+  },
+  isRunning: true,
+  user: {
+    name: 'Brandon',
+    age: 26
+  }
+}).then(()=> {
+  console.log('Set Worked');
+}, (e) => {
+  console.log('Set Failed');
+});
+
+// Running this removes the data set above
+// firebaseRef.set({
+//   appName: 'Todo Application'
+// });
+
+firebaseRef.child('app').set({
+  name: 'React-Todo-App'
 });
 
 // what the database looks like
