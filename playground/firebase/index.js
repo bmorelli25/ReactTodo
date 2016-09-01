@@ -39,3 +39,12 @@ firebaseRef.child('app').update({
 }, (e) => {
   console.log('Update Failed');
 });
+
+// firebaseRef.remove(); //removes everything
+
+// firebaseRef.child('app/name').remove() //removes app name
+
+firebaseRef.child('app').update({
+  version: '2.0',
+  name: null
+});
