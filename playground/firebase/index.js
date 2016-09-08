@@ -65,3 +65,12 @@ firebaseRef.update({isRunning: true});
 firebaseRef.off();
 
 firebaseRef.update({isRunning: false});
+
+//Working with arrays in firebaseRef
+var notesRef = firebaseRef.child('notes');
+
+var newNoteRef = notesRef.push(); //creates new item at current reference and returns it to you
+newNoteRef.set({
+  text: 'Walk the daaag'
+});
+console.log('Notes id', newNoteRef.key);
