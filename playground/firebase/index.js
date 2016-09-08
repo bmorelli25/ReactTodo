@@ -69,6 +69,18 @@ firebaseRef.update({isRunning: false});
 //Working with arrays in firebaseRef
 var notesRef = firebaseRef.child('notes');
 
+notesRef.on('child_added', (snapshot) => {
+  console.log('child_added', snapshot.key, snapshot.val());
+});
+
+notesRef.on('child_changed', (snapshot) => {
+  console.log('child_changed', snapshot.key, snapshot.val());
+});
+
+notesRef.on('child_removed', (snapshot) => {
+  console.log('child_removed', snapshot.key, snapshot.val());
+});
+
 var newNoteRef = notesRef.push(); //creates new item at current reference and returns it to you
 newNoteRef.set({
   text: 'Walk the daaag'
