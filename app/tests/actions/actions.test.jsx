@@ -95,15 +95,22 @@ describe('Actions', () => {
 //run lifecycle methods to run before and after our tests
 //allows us to set up data before running test cases
 describe('tests with firebase todos', () => {
+  var testTodoRefText = 'test test test text';
   var testTodoRef;
   //mocha: code to run before each test
   beforeEach( (done) => {
-    testTodoRef = firebaseRef.child('todos').push();
-    testTodoRef.set({
-      text: 'Something Todo',
-      completed: false,
-      createdAt: 123123
-    }).then(() => done());
+    var todosRef = firebaseRef.child('todos');
+    todosRef.remove().then(() => {
+      testTodoRef = firebaseRef.child('todos').push();
+
+      return testTodoRef.set({
+        text: testTodoRefText,
+        completed: false,
+        createdAt: 123123
+      })
+    })
+    .then(() => done())
+    .catch(done);
   });
 
   //mocha: runs after each test
@@ -126,6 +133,20 @@ describe('tests with firebase todos', () => {
         completed: true
       });
       expect(mockActions[0].updates.completedAt).toExist();
+      done();
+    }, done);
+  });
+
+  it('should populate todos and dispatch ADD_TODOS', (done) => {
+    const store = createMockStore({});
+    const action = actions.startAddTodos();
+
+    store.dispatch(action).then(() => {
+      const mockActions = store.getActions();
+
+      expect(mockActions[0].type).toEqual('ADD_TODOS');
+      expect(mockActions.todos.length)toEqual(1);
+      expect(mockActions[0].todos[0].text).toEqual(testTodoRefText);
       done();
     }, done);
   });
