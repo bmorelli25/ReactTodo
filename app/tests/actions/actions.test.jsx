@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 var expect = require('expect');
 
+import firebase, {firebaseRef} from 'app/firebase';
 var actions = require('actions');
 
 //create a mock store for use during our tests below
@@ -88,5 +89,44 @@ describe('Actions', () => {
 
     var res = actions.updateTodo(action.id, action.updates);
     expect(res).toEqual(action);
+  });
+});
+
+//run lifecycle methods to run before and after our tests
+//allows us to set up data before running test cases
+describe('tests with firebase todos', () => {
+  var testTodoRef;
+  //mocha: code to run before each test
+  beforeEach( (done) => {
+    testTodoRef = firebaseRef.child('todos').push();
+    testTodoRef.set({
+      text: 'Something Todo',
+      completed: false,
+      createdAt: 123123
+    }).then(() => done());
+  });
+
+  //mocha: runs after each test
+  afterEach( (done) => {
+    testTodoRef.remove().then(() => done());
+  });
+
+  it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
+    const store = createMockStore({});
+    const action = actions.startToggleTodo(testTodoRef.key, true);
+
+    store.dispatch(action).then(() => {
+      const mockActions = store.getActions();
+
+      expect(mockActions[0]).toInclude({
+        type: 'UPDATE_TODO',
+        id: testTodoRef.key,
+      });
+      expect(mockActions[0].updates).toInclude({
+        completed: true
+      });
+      expect(mockActions[0].updates.completedAt).toExist();
+      done();
+    }, done);
   });
 });
