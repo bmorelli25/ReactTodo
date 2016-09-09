@@ -44,13 +44,14 @@ describe('Reducers', () => {
     it('should update todo', () => {
       var todos = [{
         id: '123',
+        text: 'something',
         completed: true,
         createdAt: 123,
         completedAt: 125
       }];
       var updates = {
         completed: false,
-        createdAt: null
+        completedAt: null
       };
       var action = {
         type: 'UPDATE_TODO',
