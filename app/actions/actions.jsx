@@ -80,7 +80,7 @@ export var startToggleTodo = (id, completed) => {
     var todoRef = firebaseRef.child(`todos/${id}`);
     var updates = {
       completed,
-      completeAt: completed ? 123 : null//moment.unix() : null
+      completedAt: completed ? moment().unix() : null
     };
 
     console.log('updates', updates);
