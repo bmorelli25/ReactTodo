@@ -13,3 +13,7 @@
 * [Sass Loader](https://github.com/jtangelder/sass-loader) & [node-sass](https://github.com/sass/node-sass)
 * [Karma](https://karma-runner.github.io/1.0/index.html) test runner
 * [Expect](https://github.com/mjackson/expect) assertion libarary
+
+**To do list**
+* Integrate with Firebase
+* Integrate with social login (GitHub)
