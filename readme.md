@@ -1,6 +1,6 @@
 ###React Todo Application
 
-###**Live Demo: [gh-pages: coming soon](#), [heroku](https://react-firebase-todo-app.herokuapp.com/)**
+###**Live Demo: [heroku](https://react-firebase-todo-app.herokuapp.com/)**
 
 -------------
 
@@ -15,5 +15,4 @@
 * [Expect](https://github.com/mjackson/expect) assertion libarary
 
 **To do list**
-* Integrate with Firebase
 * Integrate with social login (GitHub)
