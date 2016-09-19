@@ -38,12 +38,27 @@ $(document).foundation();
 //app css
 require('style!css!sass!applicationStyles')
 
+//react-router midleware -> when someone switches to todosRoute this gets checked first
+var requireLogin = (nextState, replace, next) => {
+  if (!firebase.auth().currentUser) { //runs if no one is logged in
+    replace('/');
+  }
+  next();
+};
+
+var redirectIfLoggedIn = (nextState, replace, next) => {
+  if (firebase.auth().currentUser) { //runs if no one is logged in
+    replace('/todos');
+  }
+  next();
+};
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/">
-        <Route path="todos" component={TodoApp}/>
-        <IndexRoute component={Login}/>
+        <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
+        <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
       </Route>
     </Router>
   </Provider>,
