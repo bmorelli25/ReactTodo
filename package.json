@@ -4,7 +4,7 @@
   "description": "Simple React App",
   "main": "index.js",
   "scripts": {
-    "test": "set NODE_ENV=test && karma start",
+    "test": "set NODE_ENV=test&& karma start",
     "build": "webpack",
     "start": "npm run build && node server.js"
   },
