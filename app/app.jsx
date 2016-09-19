@@ -8,6 +8,16 @@ var store = require('configureStore').configure();
 var TodoAPI = require('TodoAPI');
 import Login from 'Login';
 import TodoApp from 'TodoApp';
+import firebase from 'app/firebase/';
+
+//function gets called everytime the auth state changes
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) { //means someone logged in
+    hashHistory.push('/todos');
+  } else { //means someone logged out
+    hashHistory.push('/');
+  }
+});
 
 // store.subscribe(() => {
 //   var state = store.getState();
