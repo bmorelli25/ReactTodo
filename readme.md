@@ -14,8 +14,8 @@
 * [Karma](https://karma-runner.github.io/1.0/index.html) test runner
 * [Expect](https://github.com/mjackson/expect) assertion libarary
 
+-------------
 **Enviornment variables are necessary for the app to work**
-
 * Testing env variables can be set in: ```/config/test.env```
 * Development env variables can be set in ```/config/development.env``` 
 * You need two Firebase Databases - one for testing, one for production
