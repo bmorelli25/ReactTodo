@@ -12,15 +12,15 @@ import router from 'app/router/';
 firebase.auth().onAuthStateChanged((user) => {
   if (user) { //means someone logged in
     store.dispatch(actions.login(user.uid));
+    //fetch data from firebase
+    store.dispatch(actions.startAddTodos());
+    //redirect to todos
     hashHistory.push('/todos');
   } else { //means someone logged out
     store.dispatch(actions.logout());
     hashHistory.push('/');
   }
 });
-
-//fetch data from firebase
-store.dispatch(actions.startAddTodos());
 
 //Load foundation
 $(document).foundation();
